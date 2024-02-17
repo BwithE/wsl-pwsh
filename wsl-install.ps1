@@ -2,7 +2,7 @@ Clear-host
 # Check if running as admin
 if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
     clear-host
-    Write-Host "Please run this script as an administrator." -foregroundcolor Yellow
+    Write-Host "Please run this script as an administrator." -foregroundcolor red
 } else {
     # Check if WSL is already enabled
     $wslStatus = Get-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
@@ -16,9 +16,9 @@ if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
         # Check if reboot is required
         $rebootRequired = $?
         if ($rebootRequired) {
-            Write-Host "WSL has been enabled. Please reboot your computer to apply the changes."
+            Write-Host "WSL has been enabled. Please reboot your computer to apply the changes." -foregroundcolor Yellow
         } else {
-            Write-Host "WSL has been enabled successfully."
+            Write-Host "WSL has been enabled successfully." -foregroundcolor Green
         }
     }
 
