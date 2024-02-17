@@ -1,3 +1,9 @@
+# Check if running as admin
+if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
+    clear-host
+    Write-Host "Please run this script as an administrator."
+}
+
 # Check if WSL is already enabled
 $wslStatus = Get-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 
